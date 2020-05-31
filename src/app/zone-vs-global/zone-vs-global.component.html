@@ -1,0 +1,162 @@
+
+    
+    
+
+   
+      
+      <div class="data-table-area mg-b-15">
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="sparkline13-list">
+     
+        <div class="sparkline13-graph">
+        <div class="datatable-dashv1-list custom-datatable-overright">
+        <div id="toolbar">
+          <div class="sparkline13-hd">
+            <div class="main-sparkline13-hd">
+            <h1>Blacklisted Bic <small>(Select Row To Update)</small></h1>
+            </div>
+            </div>
+           
+        </div>
+       
+         <table class="table table-bordered">
+           <tr>
+         
+             <th>PROGRAM_KEYWORD</th>
+             <th>PROGRAM_KEYWORD_DESC</th>
+         
+           </tr>
+           <tr  *ngFor="let zvg_item of showzvg.result">
+             <td>{{zvg_item.PROGRAM_KEYWORD}}</td>
+             <td>{{zvg_item.PROGRAM_KEYWORD_DESC}}</td>
+          
+             <td>
+              <a class="action-btn" (click)="onEdit(zvg_item)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a class="action-btn" (click)="onDelete(zvg_item.REF_KEY,zvgform)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+           </tr>
+         </table>
+         <form #zvgform="ngForm" (ngSubmit)="submitform(zvgform)" id="addForm" >
+          <div class="panel-body">
+            <h4>Add Record</h4>
+          </div>
+        
+        {{zvgform.value|json}}
+        <div class="row">
+              <div class="col-md-4">
+                <input type="hidden" name="REF_KEY" #REF_KEY="ngModel" [(ngModel)]="_tableservice.selectedzvg.REF_KEY">
+                <div class="form-group">
+                  <label>Zone Id</label>
+                <input type="text" class="form-control" name="zone_id" #zone_id="ngModel" [(ngModel)]="_tableservice.selectedzvg.ZONE_ID">
+                </div>
+                <div class="form-group">
+                  <label>PROGRAM_KEYWORD</label>
+                <input type="text" class="form-control" name="program_keyword" #program_keyword="ngModel" [(ngModel)]="_tableservice.selectedzvg.PROGRAM_KEYWORD">
+              </div>
+               
+              <div class="form-group">
+                <label>MAKER_USER_ID</label>
+                <input type="text" class="form-control" name="maker_user_id" #maker_user_id="ngModel" [(ngModel)]="_tableservice.selectedzvg.MAKER_USER_ID">
+              </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>CHECKER_USER_ID</label>
+                  <input type="text" class="form-control" name="chker_user_id" #chker_user_id="ngModel" [(ngModel)]="_tableservice.selectedzvg.CHECKER_USER_ID" >
+                </div>
+                <div class="form-group">
+                  <label>MAKER_USER_NM</label>
+                  <input type="text" class="form-control" name="mker_usr_nm" #mker_usr_nm="ngModel" [(ngModel)]="_tableservice.selectedzvg.MAKER_USER_NM">
+                </div>
+                <div class="form-group">
+                  <label>CHECKER_USER_NM</label>
+                  <input type="text" class="form-control" name="chker_usr_nm" #chker_usr_nm="ngModel"  [(ngModel)]="_tableservice.selectedzvg.CHECKER_USER_NM">
+                </div>
+                <div class="form-group">
+                  <label>MAKER_COMMENT</label>
+                  <input type="text" class="form-control" name="mker_cmnt" #mker_cmnt="ngModel" [(ngModel)]="_tableservice.selectedzvg.MAKER_COMMENT">
+                </div>
+                <div class="form-group">
+                  <label>CHECKER_COMMENT</label>
+                  <input type="text" class="form-control" name="chker_cmnt" #chker_cmnt="ngModel" [(ngModel)]="_tableservice.selectedzvg.CHECKER_COMMENT">
+                </div>
+                <div class="form-group">
+                  <label>MAKER_DTTM</label>
+                  <input type="date" class="form-control" name="mkr_dttm" #mkr_dttm="ngModel" [(ngModel)]="_tableservice.selectedzvg.MAKER_DTTM">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>CHECKER_DTTM</label>
+                  <input type="date" class="form-control" name="chkr_dttm" #chkr_dttm="ngModel" [(ngModel)]="_tableservice.selectedzvg.CHECKER_DTTM">
+                  
+                </div>
+                <div class="form-group">
+                  <label>MAKER_DATE</label>
+                  <input type="date" class="form-control" name="mkr_dte" #mkr_dte="ngModel" [(ngModel)]="_tableservice.selectedzvg.MAKER_DATE">
+                </div>
+                <div class="form-group">
+                  <label>CHECKER_DATE</label>
+                  <input type="date" class="form-control" name="chkr_dte" #chkr_dte="ngModel" [(ngModel)]="_tableservice.selectedzvg.CHECKER_DATE">
+                </div>
+                <div class="form-group">
+                  <label>CHANGE_TYPE</label>
+                  <input type="text" class="form-control" name="chng_type" #chng_type="ngModel" [(ngModel)]="_tableservice.selectedzvg.CHANGE_TYPE">
+                </div>
+                <div class="form-group">
+                  <label>UPDATE_VERSION</label>
+                  <input type="number" class="form-control" name="updt_version" #updt_version="ngModel" [(ngModel)]="_tableservice.selectedzvg.UPDATE_VERSION">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>VALIDATION_STATUS</label>
+                  <input type="text" class="form-control" name="validtion_status" #validtion_status="ngModel" [(ngModel)]="_tableservice.selectedzvg.VALIDATION_STATUS">
+                  
+                </div>
+                <div class="form-group">
+                  <label>VALID_FROM_DTTM</label>
+                  <input type="date" class="form-control" name="valid_from_dttm" #valid_from_dttm="ngModel" [(ngModel)]="_tableservice.selectedzvg.VALID_FROM_DTTM">
+                </div>
+                <div class="form-group">
+                  <label>VALID_TO_DTTM</label>
+                  <input type="date" class="form-control" name="valid_to_dttm" #valid_to_dttm="ngModel" [(ngModel)]="_tableservice.selectedzvg.VALID_TO_DTTM">
+                </div>
+                <div class="form-group">
+                  <label>PROGRAM_KEYWORD_DESC</label>
+                <textarea class="form-control" name="program_keyword_desc" #program_keyword_desc="ngModel" [(ngModel)]="_tableservice.selectedzvg.PROGRAM_KEYWORD_DESC"></textarea>
+              </div>
+              </div>
+            </div>
+    
+      
+        
+          <input type="submit" class="btn btn-success">
+          
+        </form>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        <div class="footer-copyright-area">
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="footer-copy-right">
+        <p>Copyright © 2020 <a href="#">Trustling</a> All rights reserved.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      

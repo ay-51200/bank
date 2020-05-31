@@ -1,0 +1,171 @@
+
+    
+    
+
+   
+      
+      <div class="data-table-area mg-b-15">
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="sparkline13-list">
+     
+        <div class="sparkline13-graph">
+        <div class="datatable-dashv1-list custom-datatable-overright">
+        <div id="toolbar">
+          <div class="sparkline13-hd">
+            <div class="main-sparkline13-hd">
+            <h1>Blacklisted Bic <small>(Select Row To Update)</small></h1>
+            </div>
+            </div>
+           
+        </div>
+       
+         <table class="table table-bordered">
+           <tr>
+             <th>country Code</th>
+             <th>COUNTRY_NAME</th>
+             <th>RISK_LEVEL</th>
+             <th>SANCTIONED_FLAG</th>
+           </tr>
+           <tr  *ngFor="let hrc_item of showhrc.result">
+             <td>{{hrc_item.COUNTRY_CODE}}</td>
+             <td>{{hrc_item.COUNTRY_NAME}}</td>
+             <td>{{hrc_item.RISK_LEVEL}}</td>
+             <td>{{hrc_item.SANCTIONED_FLAG}}</td>
+             <td>
+              <a class="action-btn" (click)="onEdit(hrc_item)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a class="action-btn" (click)="onDelete(hrc_item.REF_KEY,hrcform)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+           </tr>
+         </table>
+         <form #hrcform="ngForm" (ngSubmit)="submitform(hrcform)" id="addForm" >
+          <div class="panel-body">
+            <h4>Add Record</h4>
+          </div>
+        
+        {{hrcform.value|json}}
+        <div class="row">
+              <div class="col-md-4">
+                <input type="hidden" name="REF_KEY" #REF_KEY="ngModel" [(ngModel)]="_tableservice.selectedhrc.REF_KEY">
+                <div class="form-group">
+                  <label>Zone Id</label>
+                <input type="text" class="form-control" name="zone_id" #zone_id="ngModel" [(ngModel)]="_tableservice.selectedhrc.ZONE_ID">
+                </div>
+                <div class="form-group">
+                  <label>COUNTRY_CODE</label>
+                <input type="text" class="form-control" name="country_code" #country_code="ngModel" [(ngModel)]="_tableservice.selectedhrc.COUNTRY_CODE">
+              </div>
+              <div class="form-group">
+                <label>COUNTRY_NAME</label>
+                <input type="text" class="form-control" name="country_name" #country_name="ngModel" [(ngModel)]="_tableservice.selectedhrc.COUNTRY_NAME">
+              </div>
+              <div class="form-group">
+                <label>RISK_LEVEL</label>
+                <input type="text" class="form-control" name="risk_level" #risk_level="ngModel" [(ngModel)]="_tableservice.selectedhrc.RISK_LEVEL">
+              </div>
+              <div class="form-group">
+                <label>SANCTIONED_FLAG</label>
+                <input type="text" class="form-control" name="sanctioned_flag" #sanctioned_flag="ngModel" [(ngModel)]="_tableservice.selectedhrc.SANCTIONED_FLAG">
+              </div>
+              <div class="form-group">
+                <label>MAKER_USER_ID</label>
+                <input type="text" class="form-control" name="maker_user_id" #maker_user_id="ngModel" [(ngModel)]="_tableservice.selectedhrc.MAKER_USER_ID">
+              </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>CHECKER_USER_ID</label>
+                  <input type="text" class="form-control" name="chker_user_id" #chker_user_id="ngModel" [(ngModel)]="_tableservice.selectedhrc.CHECKER_USER_ID" >
+                </div>
+                <div class="form-group">
+                  <label>MAKER_USER_NM</label>
+                  <input type="text" class="form-control" name="mker_usr_nm" #mker_usr_nm="ngModel" [(ngModel)]="_tableservice.selectedhrc.MAKER_USER_NM">
+                </div>
+                <div class="form-group">
+                  <label>CHECKER_USER_NM</label>
+                  <input type="text" class="form-control" name="chker_usr_nm" #chker_usr_nm="ngModel"  [(ngModel)]="_tableservice.selectedhrc.CHECKER_USER_NM">
+                </div>
+                <div class="form-group">
+                  <label>MAKER_COMMENT</label>
+                  <input type="text" class="form-control" name="mker_cmnt" #mker_cmnt="ngModel" [(ngModel)]="_tableservice.selectedhrc.MAKER_COMMENT">
+                </div>
+                <div class="form-group">
+                  <label>CHECKER_COMMENT</label>
+                  <input type="text" class="form-control" name="chker_cmnt" #chker_cmnt="ngModel" [(ngModel)]="_tableservice.selectedhrc.CHECKER_COMMENT">
+                </div>
+                <div class="form-group">
+                  <label>MAKER_DTTM</label>
+                  <input type="date" class="form-control" name="mkr_dttm" #mkr_dttm="ngModel" [(ngModel)]="_tableservice.selectedhrc.MAKER_DTTM">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>CHECKER_DTTM</label>
+                  <input type="date" class="form-control" name="chkr_dttm" #chkr_dttm="ngModel" [(ngModel)]="_tableservice.selectedhrc.CHECKER_DTTM">
+                  
+                </div>
+                <div class="form-group">
+                  <label>MAKER_DATE</label>
+                  <input type="date" class="form-control" name="mkr_dte" #mkr_dte="ngModel" [(ngModel)]="_tableservice.selectedhrc.MAKER_DATE">
+                </div>
+                <div class="form-group">
+                  <label>CHECKER_DATE</label>
+                  <input type="date" class="form-control" name="chkr_dte" #chkr_dte="ngModel" [(ngModel)]="_tableservice.selectedhrc.CHECKER_DATE">
+                </div>
+                <div class="form-group">
+                  <label>CHANGE_TYPE</label>
+                  <input type="text" class="form-control" name="chng_type" #chng_type="ngModel" [(ngModel)]="_tableservice.selectedhrc.CHANGE_TYPE">
+                </div>
+                <div class="form-group">
+                  <label>UPDATE_VERSION</label>
+                  <input type="number" class="form-control" name="updt_version" #updt_version="ngModel" [(ngModel)]="_tableservice.selectedhrc.UPDATE_VERSION">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>VALIDATION_STATUS</label>
+                  <input type="text" class="form-control" name="validtion_status" #validtion_status="ngModel" [(ngModel)]="_tableservice.selectedhrc.VALIDATION_STATUS">
+                  
+                </div>
+                <div class="form-group">
+                  <label>VALID_FROM_DTTM</label>
+                  <input type="date" class="form-control" name="valid_from_dttm" #valid_from_dttm="ngModel" [(ngModel)]="_tableservice.selectedhrc.VALID_FROM_DTTM">
+                </div>
+                <div class="form-group">
+                  <label>VALID_TO_DTTM</label>
+                  <input type="date" class="form-control" name="valid_to_dttm" #valid_to_dttm="ngModel" [(ngModel)]="_tableservice.selectedhrc.VALID_TO_DTTM">
+                </div>
+             
+              </div>
+            </div>
+    
+      
+        
+          <input type="submit" class="btn btn-success">
+          
+        </form>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        <div class="footer-copyright-area">
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="footer-copy-right">
+        <p>Copyright © 2020 <a href="#">Trustling</a> All rights reserved.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      

@@ -1,0 +1,190 @@
+
+    
+    
+
+ 
+      
+      <div class="data-table-area mg-b-15">
+      <div class="container-fluid">
+      <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="sparkline13-list">
+     
+      <div class="sparkline13-graph">
+      <div class="datatable-dashv1-list custom-datatable-overright">
+      <div id="toolbar">
+        <div class="sparkline13-hd">
+          <div class="main-sparkline13-hd">
+          <h1>Neutral words <small>(Select Row To Update)</small></h1>
+          </div>
+          </div>
+          <button (click)="addform()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></button>
+   
+      </div>
+
+      <!-- <table class="table-condensed table_header" id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar"   data-sort-class="table-active"
+      data-sortable="true" data-url="../assets/neutral_words.json">
+      <thead>
+      <tr>
+     
+     <th data-field="status" data-checkbox="true"></th>
+     <th data-field="ZONE_ID" data-sortable="true">Zone Id</th>
+     <th data-field="NOISE_WORD" data-sortable="true">Country Code</th>
+     <th data-field="REF_KEY" data-sortable="true">Ref Key</th>
+     <th data-field="MAKER_USER_ID" data-sortable="true">Maker User Id</th>
+     <th data-field="CHECKER_USER_ID" data-sortable="true">Checker User Id</th>
+     <th data-field="MAKER_USER_NM" data-sortable="true">Maker User NM</th>
+     <th data-field="CHECKER_USER_NM" data-sortable="true">Checker User NM</th>
+     <th data-field="MAKER_COMMENT" data-sortable="true">Maker Comment</th>
+     <th data-field="CHECKER_COMMENT" data-sortable="true">Checker Comment</th>    
+      <th data-field="MAKER_DTTM" data-sortable="true">Maker Dttm</th>
+     <th data-field="CHECKER_DTTM" data-sortable="true">Checker Dttm</th>
+     <th data-field="MAKER_DATE" data-sortable="true">Maker Date</th>
+     <th data-field="CHECKER_DATE" data-sortable="true">Checker Date</th>
+     <th data-field="CHANGE_TYPE" data-sortable="true">Change Type</th>
+     <th data-field="UPDATE_VERSION" data-sortable="true">Update Version</th>
+     <th data-field="VALIDATION_STATUS" data-sortable="true">Vaildation Status</th>
+     <th data-field="VALID_FROM_DTTM" data-sortable="true">Valid From Dttm</th>
+     <th data-field="VALID_TO_DTTM" data-sortable="true">Valid To Dttm</th>
+      </tr>
+      </thead>
+      
+      </table>  -->
+  
+
+      <table class="table table-bordered">
+        <tr *ngFor="let item of showdata.result">
+          <th>{{item.ZONE_ID}}</th>
+          <th>{{item.NOISE_WORD}}</th>
+          <td>
+            <a class="action-btn" (click)="onEdit(item)">
+              <i class="material-icons">edit</i>
+            </a>
+            <a class="action-btn" (click)="onDelete(item.REF_KEY,myform)">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </tr>
+
+      </table>
+
+
+      
+    
+
+
+
+
+
+
+      <form #myform="ngForm" (ngSubmit)="submitform(myform)" id="addForm" style="display: none;">
+        <div class="panel-body">
+          <h4>Add Record</h4>
+        </div>
+      
+         {{myform.value|json}}
+      <div class="row">
+            <div class="col-md-4">
+              <input type="hidden" name="REF_KEY" #REF_KEY="ngModel" [(ngModel)]="_tableservice.selectedneu.REF_KEY">
+              <div class="form-group">
+                <label>Zone Id</label>
+              <input type="text" class="form-control" name="zone_id" #zone_id="ngModel" [(ngModel)]="_tableservice.selectedneu.ZONE_ID">
+              </div>
+              <div class="form-group">
+                <label>Noise Word</label>
+              <input type="text" class="form-control" name="noise_word" #noise_word="ngModel" [(ngModel)]="_tableservice.selectedneu.NOISE_WORD">
+            </div>
+            <div class="form-group">
+              <label>Maker User Id</label>
+              <input type="text" class="form-control" name="maker_user_id" #maker_user_id="ngModel" [(ngModel)]="_tableservice.selectedneu.MAKER_USER_ID">
+            </div>
+            <div class="form-group">
+              <label>Checker User Id</label>
+              <input type="text" class="form-control" name="checker_user_id" #checker_user_id="ngModel" [(ngModel)]="_tableservice.selectedneu.CHECKER_USER_ID">
+            </div>
+            <div class="form-group">
+              <label>Maker User Number</label>
+              <input type="text" class="form-control" name="maker_user_nm" #maker_user_nm="ngModel" [(ngModel)]="_tableservice.selectedneu.MAKER_USER_NM">
+            </div>
+            <div class="form-group">
+              <label>Checker User Number</label>
+              <input type="text" class="form-control" name="checker_user_nm" #checker_user_nm="ngModel" [(ngModel)]="_tableservice.selectedneu.CHECKER_USER_NM">
+            </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Maker Comment</label>
+                <input type="text" class="form-control" name="maker_comment" #maker_comment="ngModel" [(ngModel)]="_tableservice.selectedneu.MAKER_COMMENT" >
+              </div>
+              <div class="form-group">
+                <label>Checker Comment</label>
+                <input type="text" class="form-control" name="checker_comment" #checker_comment="ngModel" [(ngModel)]="_tableservice.selectedneu.CHECKER_COMMENT">
+              </div>
+              <div class="form-group">
+                <label>Maker Dttm</label>
+                <input type="text" class="form-control" name="maker_dttm" #maker_dttm="ngModel"  [(ngModel)]="_tableservice.selectedneu.MAKER_DTTM">
+              </div>
+              <div class="form-group">
+                <label>Checker Dttm</label>
+                <input type="text" class="form-control" name="checker_dttm" #checker_dttm="ngModel" [(ngModel)]="_tableservice.selectedneu.CHECKER_DTTM">
+              </div>
+              <div class="form-group">
+                <label>Maker Date</label>
+                <input type="text" class="form-control" name="maker_date" #maker_date="ngModel" [(ngModel)]="_tableservice.selectedneu.MAKER_DATE">
+              </div>
+              <div class="form-group">
+                <label>Checker Date</label>
+                <input type="text" class="form-control" name="checker_date" #checker_date="ngModel" [(ngModel)]="_tableservice.selectedneu.CHECKER_DATE">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Change Type</label>
+                <input type="text" class="form-control" name="change_type" #change_type="ngModel" [(ngModel)]="_tableservice.selectedneu.CHANGE_TYPE">
+                
+              </div>
+              <div class="form-group">
+                <label>Update Version</label>
+                <input type="text" class="form-control" name="update_version" #update_version="ngModel" [(ngModel)]="_tableservice.selectedneu.UPDATE_VERSION">
+              </div>
+              <div class="form-group">
+                <label>Validation Status</label>
+                <input type="text" class="form-control" name="validation_status" #validation_status="ngModel" [(ngModel)]="_tableservice.selectedneu.VALIDATION_STATUS">
+              </div>
+              <div class="form-group">
+                <label>Valid from dttm</label>
+                <input type="date" class="form-control" name="valid_from_dttm" #valid_from_dttm="ngModel" [(ngModel)]="_tableservice.selectedneu.VALID_FROM_DTTM">
+              </div>
+              <div class="form-group">
+                <label>Valid to Dttm</label>
+                <input type="date" class="form-control" name="valid_to_dttm" #valid_to_dttm="ngModel" [(ngModel)]="_tableservice.selectedneu.VALID_TO_DTTM">
+              </div>
+            </div>
+          </div>
+  
+    
+      
+        <input type="submit" class="btn btn-success">
+        
+      </form>
+      <!-- -->
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+      <div class="footer-copyright-area">
+      <div class="container-fluid">
+      <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="footer-copy-right">
+      <p>Copyright © 2020 <a href="#">Trustling</a> All rights reserved.</p>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    
